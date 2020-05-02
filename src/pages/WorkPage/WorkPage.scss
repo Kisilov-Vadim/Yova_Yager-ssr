@@ -1,0 +1,244 @@
+.work {
+  margin-top: 34px;
+  padding-bottom: 100px;
+
+  @media screen and (max-width: 699px) {
+    padding-bottom: 50px;
+  }
+
+  &__mainTitleContent {
+    position: relative;
+    height: 600px;
+    width: 100%;
+
+    @media screen and (max-width: 799px) {
+      height: 400px;
+    }
+
+    @media screen and (max-width: 560px) {
+      height: 300px;
+    }
+  }
+
+  &__preload {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: white;
+    transition: all 0.4s ease;
+  }
+
+  &__mainVideo {
+    border: none;
+    outline: none;
+
+    @media screen and (max-width: 799px) {
+      height: 400px;
+    }
+
+    @media screen and (max-width: 560px) {
+      height: 300px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%; 
+    
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin: 86px 0 100px 0;
+  }
+
+  &__left, &__right {
+    width: calc((100% - 100px) / 2);
+  }
+
+  &__left {
+    margin: 70px 30px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (max-width: 799px) {
+      margin: 70px 0 0 0;
+    }
+
+    &-mobtitle {
+      display: none;
+      text-align: center;
+    }
+
+    &-table {
+      margin-bottom: 97px;
+
+      @media screen and (max-width: 799px) {
+        margin-bottom: 0;
+        width: 80%;
+        height: max-content;
+      }
+
+      @media screen and (max-width: 560px) {
+        width: 100%;
+      }
+
+      & > tbody > tr {
+        @media screen and (max-width: 560px) {
+          display: flex;
+        }
+      }
+
+      & > tbody > tr > td:nth-child(odd) {
+        display: flex;
+        align-items: flex-start;
+        font-family: ProximaBold, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 30px;
+        min-width: 140px;
+        margin-right: 10px;
+      }
+
+      & > tbody > tr > td:nth-child(even) {
+        font-family: ProximaRegular, sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 30px;
+      }
+    }
+    
+    &-button {
+      width: 150px;
+    }
+  }
+
+  &__right {
+    
+    &-title {
+      font-family: Formular;
+      font-size: 36px;
+      line-height: 34px;
+      font-weight: 500;
+      margin: 0 0 41px 0;
+    }
+
+    &-text {
+      font-family: GothamPro, sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      white-space: pre-line;
+    }
+  }
+
+  &__also {
+    margin: 0 auto 100px;
+    text-align: center;
+
+    @media screen and (max-width: 560px) {
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+  }
+
+  &__details {
+    font-family: Formular;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .work {
+    padding: 0;
+    
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 21px 0 50px 0;
+
+      &-invisible {
+        display: none!important;
+      }
+    }
+
+    &__left {
+      width: 100%;
+      align-items: center;
+      margin: 0;
+
+      &-mobtitle {
+        display: block;
+        font-family: Formular;
+        font-size: 24px;
+        line-height: 34px;
+        font-weight: 500;
+        margin: 30px 0 50px 0;
+      }
+
+      &-table {
+
+        & > tr > td {
+          width: 50%;
+          font-size: 14px !important;
+        }
+
+        & > tr > td:nth-child(odd) {
+          display: flex;
+          align-items: flex-start;
+          margin: 0;
+          width: max-content;
+        }
+      }
+
+      &-button {
+        display: none;
+      }
+
+      &-mobiletitle {
+        display: block;
+      }
+    }
+
+    &__right {
+      width: 100%;
+      margin-top: 50px;
+      
+      &-text {
+        margin: 0 auto;
+        font-size: 14px;
+      }
+
+      &-title {
+        display: none;
+      }
+    }
+
+    &__also {
+      font-size: 16px;
+    }
+
+    &__details {
+      display: block;
+    }
+  }
+}
+

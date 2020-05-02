@@ -1,0 +1,31 @@
+.social {
+  width: max-content;
+
+  & > a {
+    color: #000;
+    font-family: ProximaRegular, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 34px;
+    margin-right: 18px;
+    text-decoration: none;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #1518ff;
+    }
+  }
+
+  &__footer {
+    margin: 0 auto;
+
+    & > a {
+      color: #fff; 
+      font-family: Formular;
+    }
+  }
+}

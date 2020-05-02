@@ -1,0 +1,70 @@
+.menu {
+
+  &__nav {
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    
+    @media screen and (max-width: 560px) {
+      margin-bottom: 21px;
+    }
+
+    a, span {
+      color: #000;
+      font-family: Formular;
+      font-weight: normal;
+      font-size: 16px;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 3;
+      letter-spacing: 0.76px;
+      text-decoration: none; 
+      transition: all .4s ease;
+      white-space: nowrap; 
+
+      @media screen and (max-width: 560px) {
+        font-size: 14px;
+        line-height: 2.86em;
+      }
+    }
+
+    a {
+
+      &:hover {
+        color: #1518ff;
+      }
+    }
+
+    span {
+      opacity: .5
+    }
+  }
+}
+
+.footer__nav {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  letter-spacing: 0.35px;
+  line-height: 39px;
+
+  a, span {
+    color: #ffffff;
+    font-family: Formular;
+    font-size: 16px;
+    margin-right: 4.5%;
+    font-weight: 400px;
+  }
+}
+
+.menu__wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+/* Handle */
+.menu__wrapper::-webkit-scrollbar-thumb {
+  background: #eee; 
+  border-radius: 10px;
+}
+

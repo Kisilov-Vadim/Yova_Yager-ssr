@@ -1,0 +1,13 @@
+.main {
+
+  &__work {
+    
+    .decorateButton {
+      margin-bottom: 100px;
+
+      @media screen and (max-width: 699px) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
