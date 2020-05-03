@@ -30,6 +30,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "sass": "^1.26.5",
+    "serialize-javascript": "^3.0.0",
     "warpjs": "^1.0.8"
   },
   "scripts": {

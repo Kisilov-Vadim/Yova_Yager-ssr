@@ -14,7 +14,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
   const [awardsCardsHeight, setAwardsCardsHeight] = useState(null);
   const [windowWidth, setWindowWidth] = useState(null);
   if (typeof window === undefined) {
-    const [windowWidth, setWindowWidth] = useState($(window).width());
+    setWindowWidth($(window).width());
   }
 
   useEffect(() => {

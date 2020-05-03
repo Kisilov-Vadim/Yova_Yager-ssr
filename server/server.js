@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import "isomorphic-fetch";
 import { createStore } from 'redux';
+import serialize from 'serialize-javascript';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -17,9 +18,10 @@ const PORT = 8000;
 const app = express()
 
 const getSSRHtml = (url, state) => {
+  const context = {state}
   const store = createStore(reducer, state);
   return ReactDOMServer.renderToString(
-    <StaticRouter location={url}>
+    <StaticRouter context={context} location={url}>
       <Provider store={store}>
         <App />
       </Provider>
@@ -88,7 +90,10 @@ getToken('http://yova.praid.com.ua/api/login')
               console.log(err)
               return res.status(500).send('Some error happend')
             }
-            return res.send(data.replace('<div id="root"></div>', `<div id="root">${html}</div>`))
+            return res.send(
+              data.replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+                  .replace('</body>', `<script>window.__ROUTE_DATA__ = ${serialize(state)}</script></body>`)
+            )
           })
         })
       })
