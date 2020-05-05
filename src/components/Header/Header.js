@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import $ from 'jquery'
 
-import Social from '../Social/Social';
 import {SliderMenu} from '../SliderMenu/index';
 import {SelectLanguage} from '../SelectLanguage/index';
 
@@ -26,9 +25,7 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth}) => {
   }
 
   useEffect(() => {
-    if(typeof window !== undefined) {
-      resize()
-    }
+    resize()
   }, [])
 
   useEffect(() => {

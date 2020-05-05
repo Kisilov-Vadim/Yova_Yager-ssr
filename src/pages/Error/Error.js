@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import './Error.scss'; 
+import './Error.scss';
 
 import $ from 'jquery';
 
@@ -13,9 +13,9 @@ export default function Error() {
   return (
     <div className="error">
       <div className="error__container">
-        <img src="/img/error/top.png" />
+        <img src="/img/error/top.png" alt='error'/>
         <a href="http://yova.praid.com.ua" className="error__link">Back to home</a>
-        <img src="/img/error/bottom.png" />
+      <img src="/img/error/bottom.png" alt="error"/>
       </div>
     </div>
   )

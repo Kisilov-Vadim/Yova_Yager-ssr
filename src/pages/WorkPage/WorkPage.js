@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './WorkPage.scss';
 import {useSpring, animated} from 'react-spring';
-// import {JSONLD, Generic} from 'react-structured-data'
-// import Helmet from 'react-helmet'
 import LazyLoad from 'react-lazyload';
+import {MetaTags} from 'react-meta-tags';
 
+//import Components
 import {ButtonDecorate} from '../../components/ButtonDecorate/index';
 import {WorkPageGallery} from '../../components/WorkPageGallery/index';
 import {MassonryGallery} from '../../components/MassonryGallery/index';
 import LazyPhotoLoad from '../../components/LazyPhotoLoad/LazyPhotoLoad';
-import {getToken, getData} from '../../store/actions';
 import Preloader from '../../components/Preloader/Preloader';
 import WorkPageTable from './WorkPageTable';
+
+//import Resux actions
+import {getToken, getData} from '../../store/actions';
+
 
 const shuffle = (arr) => {
 	let j, temp;
@@ -80,88 +83,94 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
   } else {
 
     return (
-      <section className="work" itemScope itemType="http://schema.org/CreativeWork" itemProp="isFamilyFriendly">
-        <div className="wrapper">
-          <div className="work__mainTitleContent">
-            {
-              currentWorkData.play === 1
-                ? <iframe
-                    data-test="main_video"
-                    className="work__mainVideo"
-                    width="100%"
-                    height="100%"
-                    src={currentWorkData.video}>
-                  </iframe>
-                : <LazyPhotoLoad
-                    data-test="main_image"
-                    actualClass="work__image"
-                    image={currentWorkData.mainImage}
-                    alt={currentWorkData.title}
-										itemptop="image"
-                  />
-            }
-          </div>
-            <h1 className="work__left-mobtitle" itemProp="name">{currentWorkData.title}</h1>
-						<>
-							<animated.div id="contentShow" className="work__info" style={typeof window === undefined ? window.innerWidth < 799 ? showContentAnimation : null : null}>
-	              <div className="work__left">
-	                <WorkPageTable language={language} content={currentWorkData.common_info} />
-								{ currentWorkData.file.length > 0 && typeof window === undefined &&
-	                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
-	                    <div className="work__left-button">
-	                      <a href={currentWorkData.file} download={currentWorkData.title}>
-	                        <ButtonDecorate
-	                          title="media kit"
-	                          title_ua="Медіа комплект"
-	                          id={'buttonMedia'}
-	                          autoStart={true}
-	                        />
-	                      </a>
-	                    </div>
-	                  </LazyLoad>
-	                }
-	              </div>
-	              <div className="work__right">
-	              <h1
-	                data-test={`main_title-${language}`}
-	                itemProp="name" className="work__right-title"
-	              >
-	                {currentWorkData.title}
-	              </h1>
-	              <p
-									data-test={`main_description-${language}`}
-									className="work__right-text"
-									itemptop='description'
-								>
-								{currentWorkData.description}
-								</p>
-	              </div>
-	            </animated.div>
-						</>
-            <button className="work__details" onClick={() => setShowDetails(!showDetails)}>
-							MORE DETAILS {`${showDetails === true ? '-' : '+'}`}
-						</button>
-            {
-              currentWorkData.images.length > 0
-                ?
-                  <WorkPageGallery
-                    images={currentWorkData.images}
-                  />
-                :
-                  null
-            }
-          <h3 className='work__also'>{language === 'en' ? 'YOU MIGHT ALSO LIKE' : 'Вам може сподобатись'}</h3>
-          <MassonryGallery
-            title={false}
-            button={true}
-            worksArr={worksForAlsoLike()}
-            count={4}
-            area={area}
-            photoLoadButton={true}
-            buttonAutoStart={true}
-          />
-        </div>
-      </section>
+			<>
+				<MetaTags>
+					<title>{currentWorkData.title}</title>
+					<meta name="description" content={`In Work page you can read some information about ${currentWorkData.title}`} />
+				</MetaTags>
+	      <section className="work" itemScope itemType="http://schema.org/CreativeWork" itemProp="isFamilyFriendly">
+	        <div className="wrapper">
+	          <div className="work__mainTitleContent">
+	            {
+	              currentWorkData.play === 1
+	                ? <iframe
+	                    data-test="main_video"
+	                    className="work__mainVideo"
+	                    width="100%"
+	                    height="100%"
+	                    src={currentWorkData.video}>
+	                  </iframe>
+	                : <LazyPhotoLoad
+	                    data-test="main_image"
+	                    actualClass="work__image"
+	                    image={currentWorkData.mainImage}
+	                    alt={currentWorkData.title}
+											itemptop="image"
+	                  />
+	            }
+	          </div>
+	            <h1 className="work__left-mobtitle" itemProp="name">{currentWorkData.title}</h1>
+							<>
+								<animated.div id="contentShow" className="work__info" style={typeof window === undefined ? window.innerWidth < 799 ? showContentAnimation : null : null}>
+		              <div className="work__left">
+		                <WorkPageTable language={language} content={currentWorkData.common_info} />
+									{ currentWorkData.file.length > 0 && typeof window === undefined &&
+		                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
+		                    <div className="work__left-button">
+		                      <a href={currentWorkData.file} download={currentWorkData.title}>
+		                        <ButtonDecorate
+		                          title="media kit"
+		                          title_ua="Медіа комплект"
+		                          id={'buttonMedia'}
+		                          autoStart={true}
+		                        />
+		                      </a>
+		                    </div>
+		                  </LazyLoad>
+		                }
+		              </div>
+		              <div className="work__right">
+		              <h1
+		                data-test={`main_title-${language}`}
+		                itemProp="name" className="work__right-title"
+		              >
+		                {currentWorkData.title}
+		              </h1>
+		              <p
+										data-test={`main_description-${language}`}
+										className="work__right-text"
+										itemptop='description'
+									>
+									{currentWorkData.description}
+									</p>
+		              </div>
+		            </animated.div>
+							</>
+	            <button className="work__details" onClick={() => setShowDetails(!showDetails)}>
+								MORE DETAILS {`${showDetails === true ? '-' : '+'}`}
+							</button>
+	            {
+	              currentWorkData.images.length > 0
+	                ?
+	                  <WorkPageGallery
+	                    images={currentWorkData.images}
+	                  />
+	                :
+	                  null
+	            }
+	          <h3 className='work__also'>{language === 'en' ? 'YOU MIGHT ALSO LIKE' : 'Вам може сподобатись'}</h3>
+	          <MassonryGallery
+	            title={false}
+	            button={true}
+	            worksArr={worksForAlsoLike()}
+	            count={4}
+	            area={area}
+	            photoLoadButton={true}
+	            buttonAutoStart={true}
+	          />
+	        </div>
+	      </section>
+			</>
     );
   }
 }

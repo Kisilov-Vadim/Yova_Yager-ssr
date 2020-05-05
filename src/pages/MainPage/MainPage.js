@@ -1,12 +1,17 @@
 import React, {useEffect} from 'react';
 import "./MainPage.scss";
-import {getData, getToken} from '../../store/actions';
+import {MetaTags} from 'react-meta-tags';
 
+//import Components
 import {Message} from '../../components/Message/index';
 import {Featured} from '../../components/Featured/index';
 import {MainSociality} from '../../components/MainSociality/index';
 import {MassonryGallery} from '../../components/MassonryGallery/index';
 import Preloader from '../../components/Preloader/Preloader';
+
+//import Redux actions
+import {getData, getToken} from '../../store/actions';
+
 
 const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAllSocialities}) => {
 
@@ -35,25 +40,31 @@ const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAll
     )
   } else {
     return (
-      <main>
-        <Message />
-        <div className="wrapper">
-          <Featured />
-          <div className="main__work">
-            <MassonryGallery
-              worksArr={works}
-              count={8}
-              title={allText['main_subtitle-second_en']}
-              title_ua={allText['main_subtitle-second_ua']}
-              button={true}
-              area='works'
-              photoLoadButton={true}
-              buttonAutoStart={true}
-            />
+      <>
+        <MetaTags>
+          <title>Yova Yager</title>
+          <meta name="description" content="In main page you can see some cocards with my works" />
+        </MetaTags>
+        <main>
+          <Message />
+          <div className="wrapper">
+            <Featured />
+            <div className="main__work">
+              <MassonryGallery
+                worksArr={works}
+                count={8}
+                title={allText['main_subtitle-second_en']}
+                title_ua={allText['main_subtitle-second_ua']}
+                button={true}
+                area='works'
+                photoLoadButton={true}
+                buttonAutoStart={true}
+              />
+            </div>
+            <MainSociality />
           </div>
-          <MainSociality />
-        </div>
-      </main>
+        </main>
+      </>
     );
   }
 }

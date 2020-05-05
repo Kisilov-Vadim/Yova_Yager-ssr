@@ -5,12 +5,12 @@ import {WorksCard} from '../WorksCard/index';
 import {ButtonDecorate} from '../ButtonDecorate/index';
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import LazyLoad from 'react-lazyload'; 
+import LazyLoad from 'react-lazyload';
 
 const MassonryGallery = (
     {
-      screenWidth, allText, title, title_ua, language, backgroundPici, 
-      button, worksArr, area, photoLoadButton, 
+      screenWidth, allText, title, title_ua, language, backgroundPici,
+      button, worksArr, area, photoLoadButton,
       count, buttonAutoStart
     }
   ) => {
@@ -20,9 +20,9 @@ const MassonryGallery = (
     if (!photoLoadButton) {
       window.addEventListener('scroll', onScrollList);
     }
-    
+
     return () => {
-      
+
       if (!photoLoadButton) {
         window.removeEventListener('scroll', onScrollList);
       }
@@ -30,17 +30,17 @@ const MassonryGallery = (
   })
 
   const onScrollList = () => {
-    let gallery = $('.massonry .massonry__gallery'); 
-    const scrollBottom = gallery.scrollTop() + gallery.outerHeight() - ($(window).scrollTop() + $(window).innerHeight() / 2); 
+    let gallery = $('.massonry .massonry__gallery');
+    const scrollBottom = gallery.scrollTop() + gallery.outerHeight() - ($(window).scrollTop() + $(window).innerHeight() / 2);
 
     if (scrollBottom < 0) {
       setElementCount(elementCount + count)
     }
   }
 
-  return (  
+  return (
     <div className="massonry">
-      {title === false ? null : 
+      {title === false ? null :
         <h2 itemProp="name" className="massonry__title">
           {
             language === 'en' ? title : title_ua
@@ -48,18 +48,18 @@ const MassonryGallery = (
         </h2>
       }
       <div className="massonry__gallery">
-        <Masonry 
+        <Masonry
           breakpointCols={`${screenWidth < 700 ? 1 : 2}`}
           className="massonry__gallery-table"
-          columnClassName="massonry__gallery-columns"> 
+          columnClassName="massonry__gallery-columns">
 
           {worksArr.map((work, index) => {
             if (elementCount <= index) {
-              return
+              return null
             }
-            return <WorksCard 
+            return <WorksCard
               key={work.id}
-              image={work.projectImage} 
+              image={work.projectImage}
               title={work.title}
               link={work.alias}
               location={work.city_country}
@@ -67,33 +67,33 @@ const MassonryGallery = (
               area={area}
             />
           })}
-        </Masonry>   
+        </Masonry>
       </div>
       {
         photoLoadButton && button && elementCount < worksArr.length ?
           <LazyLoad height={elementCount >= worksArr.length ? 0 : 85} unmountIfInvisible={true} offset={200}>
-            <div 
-              onClick={() => setElementCount(elementCount + count)} 
+            <div
+              onClick={() => setElementCount(elementCount + count)}
             >
-              <ButtonDecorate 
-                title={allText.button_more_en} 
+              <ButtonDecorate
+                title={allText.button_more_en}
                 title_ua={allText.button_more_ua}
                 id={'buttonMassonry'}
                 autoStart={buttonAutoStart}
               />
-            </div> 
+            </div>
           </LazyLoad>
           : null
       }
     </div>
   );
 }
- 
+
 MassonryGallery.propTypes = {
   count: PropTypes.number.isRequired,
-  title: PropTypes.string, 
-  title_ua: PropTypes.string, 
-  button: PropTypes.bool.isRequired, 
+  title: PropTypes.string,
+  title_ua: PropTypes.string,
+  button: PropTypes.bool.isRequired,
   photoLoadButton: PropTypes.bool,
   buttonAutoStart: PropTypes.bool.isRequired
 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import "./Footer.scss";
 
 import {Navigation} from '../Navigation/index';
@@ -57,7 +57,7 @@ const Footer = ({language, allText}) => {
             Designed by
             <img src="/img/footer/logo_HETMANZ.svg" alt="HETMANZ" />
           </span>
-          <a href="https://amsg.com.ua" target="_blank">
+          <a href="https://amsg.com.ua" target="_blank" rel="noopener noreferrer">
             Developed by
             <img src="/img/footer/logo_amsg.svg" alt="AMSG" />
           </a>

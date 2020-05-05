@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Typist from 'react-typist';
 import './Message.scss';
 import $ from 'jquery';
-import {useTrail, animated, config} from 'react-spring';
+import {useTrail, animated} from 'react-spring';
 
 import {MainWaveAnimatione} from '../MainWaveAnimation/index';
 

@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import './Workspage.scss';
-import {getData, getToken} from '../../store/actions';
+import {MetaTags} from 'react-meta-tags';
 
+//import Components
 import {WorksPageNav} from '../../components/WorksPageNav/index';
 import {MassonryGallery} from '../../components/MassonryGallery/index';
 import Preloader from '../../components/Preloader/Preloader';
+
+//import Redux actions
+import {getData, getToken} from '../../store/actions';
 
 const WorksPage = ({works, language, setAllWorks}) => {
   const [filter, setFilter] = useState('VIEW ALL')
@@ -22,17 +26,17 @@ const WorksPage = ({works, language, setAllWorks}) => {
         .then(data => {
           setAllWorks(data[0])
         })
-        .catch(err => console.log(err)); 
+        .catch(err => console.log(err));
       })
   }, [])
-  
+
   if(!works) {
     return (
       <Preloader />
     )
   } else {
 
-    let categories = new Set(); 
+    let categories = new Set();
     works.forEach(work => categories.add(work.category_name))
 
     if (categories.size <= 1 && categories.has('')) {
@@ -48,26 +52,32 @@ const WorksPage = ({works, language, setAllWorks}) => {
 
     const filteredArr = filter === 'VIEW ALL' || filter === 'ПОКАЗАТИ ВСЕ' ? works : works.filter(item => item.category_name === filter)
 
-    return ( 
-      <section className="workspage">
-        <div className="wrapper">
-          <div className="workspage__nav">
-            <h1 className="workspage__nav-title">{language === 'en' ? 'Works' : 'Роботи'}</h1>
-            <WorksPageNav setFilter={setFilter} filter={filter} categories={categories} />
+    return (
+      <>
+        <MetaTags>
+          <title>Works Page</title>
+          <meta name="description" content="In Works page you can find all my works" />
+        </MetaTags>
+        <section className="workspage">
+          <div className="wrapper">
+            <div className="workspage__nav">
+              <h1 className="workspage__nav-title">{language === 'en' ? 'Works' : 'Роботи'}</h1>
+              <WorksPageNav setFilter={setFilter} filter={filter} categories={categories} />
+            </div>
+            <MassonryGallery
+              worksArr={filteredArr}
+              title={false}
+              button={true}
+              photoLoadButton={false}
+              area='works'
+              count={8}
+              buttonAutoStart={true}
+            />
           </div>
-          <MassonryGallery 
-            worksArr={filteredArr}
-            title={false}
-            button={true} 
-            photoLoadButton={false}
-            area='works'
-            count={8}
-            buttonAutoStart={true}
-          />
-        </div>
-      </section>
+        </section>
+      </>
     );
-  }  
+  }
 }
- 
+
 export default WorksPage;

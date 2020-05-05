@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Fade from 'react-reveal/Fade';
 import './WorksCard.scss';
 import {Link} from 'react-router-dom';
