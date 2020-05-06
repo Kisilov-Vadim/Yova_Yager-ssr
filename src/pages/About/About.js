@@ -58,8 +58,8 @@ const About = ({language, setAboutPage, aboutPage}) => {
     return (
       <>
         <MetaTags>
-          <meta name="description" content="In About page you can read some information about YY" />
           <title>About Page</title>
+          <meta name="description" content="In About page you can read some information about YY" />
         </MetaTags>
         <section className="about" itemScope itemType="http://schema.org/Person">
           <meta itemProp="jobTitle" content="designer" />

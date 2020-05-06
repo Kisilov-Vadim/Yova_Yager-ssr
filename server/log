@@ -1,0 +1,47 @@
+[TAILING] Tailing last 15 lines for [0] process (change the value with --lines option)
+/home/dev/.pm2/logs/yova2-NodeServer-error.log last 15 lines:
+0|yova2-No |   errno: 'EADDRINUSE',
+0|yova2-No |   syscall: 'listen',
+0|yova2-No |   address: '::',
+0|yova2-No |   port: 3000
+0|yova2-No | }
+0|yova2-No | npm ERR! code ELIFECYCLE
+0|yova2-No | npm ERR! errno 1
+0|yova2-No | npm ERR! yova2.praid.com.ua@0.1.0 ssr: `node server/index.js`
+0|yova2-No | npm ERR! Exit status 1
+0|yova2-No | npm ERR! 
+0|yova2-No | npm ERR! Failed at the yova2.praid.com.ua@0.1.0 ssr script.
+0|yova2-No | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+0|yova2-No | 
+0|yova2-No | npm ERR! A complete log of this run can be found in:
+0|yova2-No | npm ERR!     /home/dev/.npm/_logs/2020-05-05T14_00_42_615Z-debug.log
+
+/home/dev/.pm2/logs/yova2-NodeServer-out.log last 15 lines:
+0|yova2-No | 
+0|yova2-No | > yova2.praid.com.ua@0.1.0 ssr /home/dev/web/yova2.praid.com.ua
+0|yova2-No | > node server/index.js
+0|yova2-No | 
+0|yova2-No | Shirsnyaga on 8000 port
+0|yova2-No | 
+0|yova2-No | > yova2.praid.com.ua@0.1.0 start /home/dev/web/yova2.praid.com.ua
+0|yova2-No | > node server/index.js
+0|yova2-No | 
+0|yova2-No | Listen on 3000 port
+0|yova2-No | 
+0|yova2-No | > yova2.praid.com.ua@0.1.0 start /home/dev/web/yova2.praid.com.ua
+0|yova2-No | > node server/index.js
+0|yova2-No | 
+0|yova2-No | Listen on 3000 port
+
+0|yova2-NodeServer  | > yova2.praid.com.ua@0.1.0 start /home/dev/web/yova2.praid.com.ua
+0|yova2-NodeServer  | > node server/index.js
+0|yova2-NodeServer  | Listen on 3000 port
+[PM2][ERROR] Command not found
+
+usage: pm2 [options] <command>
+
+pm2 -h, --help             all available commands and options
+pm2 examples               display pm2 usage examples
+pm2 <command> -h           help on a specific command
+
+Access pm2 files in ~/.pm2

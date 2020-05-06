@@ -12,6 +12,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import MetaTagsServer from 'react-meta-tags/server';
 import {MetaTagsContext} from 'react-meta-tags';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 //React Components
 import {App} from '../src/App/index';
@@ -21,14 +22,15 @@ import {reducer} from '../src/store/store';
 import {getToken, getData} from '../src/store/actions';
 
 //Create server
-const PORT = 3000;
+const PORT = 8000;
 
 const app = express()
 
-const metaTagsInstance = MetaTagsServer();
+let metaTagsInstance;
 
 //get full content for div#root
 const getSSRHtml = (url, state) => {
+  metaTagsInstance = MetaTagsServer();
   const context = {state}
   const store = createStore(reducer, state);
   return ReactDOMServer.renderToString(
@@ -41,6 +43,8 @@ const getSSRHtml = (url, state) => {
     </StaticRouter>
   )
 }
+
+app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua/api', changeOrigin: true }));
 
 getToken('http://yova.praid.com.ua/api/login')
   .then(data => data.data['api_token'])
@@ -100,8 +104,8 @@ getToken('http://yova.praid.com.ua/api/login')
 
         // get /about /contacts /works /allSocialities
         app.get('*', (req, res, next) => {
-          const meta = metaTagsInstance.renderToString();
           const html = getSSRHtml(req.url, state);
+          const meta = metaTagsInstance.renderToString();
           fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
             if(err) {
               console.log(err)
@@ -144,8 +148,8 @@ app.get('/', (req, res, next) => {
             contactPage: data[4],
             allText: data[3]
           }
-          const meta = metaTagsInstance.renderToString();
           const html = getSSRHtml(req.url, state);
+          const meta = metaTagsInstance.renderToString();
           fs.readFile(path.resolve('./build/index.html'), 'utf-8', (err, data) => {
             if(err) {
               console.log(err)
@@ -163,5 +167,5 @@ app.get('/', (req, res, next) => {
 app.use(express.static(path.resolve(__dirname, '..', 'build')))
 
 app.listen(PORT, () => {
-  console.log(`Shirsnyaga on ${PORT} port` )
+  console.log(`Listen on ${PORT} port` )
 })
