@@ -53,10 +53,10 @@ const Footer = ({language, allText}) => {
             Made with
             <img src="/img/footer/heart.svg" alt="heart" />
           </span>
-          <span>
+          <a href="http://www.hetmanz.com" target="_blank" rel="noopener noreferrer">
             Designed by
             <img src="/img/footer/logo_HETMANZ.svg" alt="HETMANZ" />
-          </span>
+          </a>
           <a href="https://amsg.com.ua" target="_blank" rel="noopener noreferrer">
             Developed by
             <img src="/img/footer/logo_amsg.svg" alt="AMSG" />
