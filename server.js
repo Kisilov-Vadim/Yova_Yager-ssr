@@ -22,7 +22,7 @@ import {reducer} from '../src/store/store';
 import {getToken, getData} from '../src/store/actions';
 
 //Create server
-const PORT = 8000;
+const PORT = 8001;
 
 const app = express()
 
@@ -44,7 +44,8 @@ const getSSRHtml = (url, state) => {
   )
 }
 
-// app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua' }));
+app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
+app.use('/admin', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
 
 getToken('http://yova.praid.com.ua/api/login')
   .then(data => data.data['api_token'])
@@ -56,7 +57,8 @@ getToken('http://yova.praid.com.ua/api/login')
         getData("http://yova.praid.com.ua/api/projects", token, 'soc', 'en', '', 'false'),
         getData("http://yova.praid.com.ua/api/text", token),
         getData("http://yova.praid.com.ua/api/contact", token, '', 'en', '', ''),
-        getData("http://yova.praid.com.ua/api/about", token, '', 'en', '', '')
+        getData("http://yova.praid.com.ua/api/about", token, '', 'en', '', ''),
+        getData("http://yova.praid.com.ua/api/seo", token, '', 'en', '', 'true'),
       ])
       .then(data => ({
           screenWidth: 1440,
@@ -69,7 +71,8 @@ getToken('http://yova.praid.com.ua/api/login')
           currentWorkData: false,
           aboutPage: data[5],
           contactPage: data[4],
-          allText: data[3]
+          allText: data[3],
+          seoMeta: data[6]
         }))
       .then(state => {
 
@@ -91,8 +94,8 @@ getToken('http://yova.praid.com.ua/api/login')
                         console.log(err)
                         return res.status(500).send('Some error happend')
                       }
-                      return res.send(
-                        data.replace('<head>', `<head>${meta}`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+                      return res.status(200).send(
+                        data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
                       )
                     })
                   })
@@ -104,17 +107,17 @@ getToken('http://yova.praid.com.ua/api/login')
 
         // get /about /contacts /works /allSocialities
         app.get('*', (req, res, next) => {
-          const html = getSSRHtml(req.url, state);
-          const meta = metaTagsInstance.renderToString();
-          fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
-            if(err) {
-              console.log(err)
-              return res.status(500).send('Some error happend')
-            }
-            return res.send(
-              data.replace('<head>', `<head>${meta}`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-            )
-          })
+            const html = getSSRHtml(req.url, state);
+            const meta = metaTagsInstance.renderToString();
+            fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+              if(err) {
+                console.log(err)
+                return res.status(200).status(500).send('Some error happend')
+              }
+              return res.send(
+                data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+              )
+            })
         })
       })
     })
@@ -132,7 +135,8 @@ app.get('/', (req, res, next) => {
           getData("http://yova.praid.com.ua/api/projects", token, 'soc', 'en', '', 'true'),
           getData("http://yova.praid.com.ua/api/text", token),
           getData("http://yova.praid.com.ua/api/contact", token, '', 'en', '', ''),
-          getData("http://yova.praid.com.ua/api/about", token, '', 'en', '', '')
+          getData("http://yova.praid.com.ua/api/about", token, '', 'en', '', ''),
+          getData("http://yova.praid.com.ua/api/seo", token, 'main', 'en', '', 'true')
         ])
         .then(data => {
           const state = {
@@ -146,7 +150,8 @@ app.get('/', (req, res, next) => {
             currentWorkData: false,
             aboutPage: data[5],
             contactPage: data[4],
-            allText: data[3]
+            allText: data[3],
+            seoMeta: data[6]
           }
           const html = getSSRHtml(req.url, state);
           const meta = metaTagsInstance.renderToString();
@@ -155,8 +160,8 @@ app.get('/', (req, res, next) => {
               console.log(err)
               return res.status(500).send('Some error happend')
             }
-            return res.send(
-              data.replace('<head>', `<head>${meta}`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+            return res.status(200).send(
+              data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
             )
           })
         })
@@ -164,7 +169,7 @@ app.get('/', (req, res, next) => {
       })
 })
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')))
+app.use('/static', express.static(__dirname + '../public_html'))
 
 app.listen(PORT, () => {
   console.log(`Listen on ${PORT} port` )

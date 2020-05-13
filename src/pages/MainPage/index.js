@@ -7,11 +7,12 @@ const mapStateToPros = state => ({
   allSocialities: state.allSocialities, 
   allText: state.allText,
   language: state.language,
+  seoMeta: state.seoMeta,
 })
 
 const mapDispatchToProps = {
   setAllSocialities,
-  setAllWorks,
+  setAllWorks
 }
 
 const newMainPage = connect(

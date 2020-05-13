@@ -9,7 +9,8 @@ export const ACTIONS = {
   SET_CURRENTWORKPAGE: 'SET_CURRENTWORKPAGE',
   CHANGE_LANGUAGE: 'CHANGE_LANGUAGE', 
   SET_ABOUT_PAGE: 'SET_ABOUT_PAGE',
-  SET_CONTACT_PAGE: 'SET_CONTACT_PAGE'
+  SET_CONTACT_PAGE: 'SET_CONTACT_PAGE', 
+  SET_SEO: 'SET_SEO'
 }
 
 export const setScreenWidth = (width) => ({ type: ACTIONS.SET_SCREEN_WIDTH, width })
@@ -22,7 +23,8 @@ export const setAllWorks = (works) => ({ type: ACTIONS.SET_WORKS, works });
 export const setAllSocialities = (allSocialities) => ({ type: ACTIONS.SET_ALLSOCIALITIES, allSocialities }); 
 export const setAllText = (text) => ({ type: ACTIONS.SET_ALLTEXT, text }); 
 export const setAboutPage = (about) => ({ type: ACTIONS.SET_ABOUT_PAGE, about });
-export const setContactPage = (contact) => ({ type: ACTIONS.SET_CONTACT_PAGE, contact })
+export const setContactPage = (contact) => ({ type: ACTIONS.SET_CONTACT_PAGE, contact });
+export const setSeo = (seo) => ({ type: ACTIONS.SET_SEO, seo });
 
 
 export const getToken = async (url) => {
@@ -69,13 +71,15 @@ export const getAllData = (lang) => {
             getData("http://yova.praid.com.ua/api/projects", token, 'feature', lang, '', 'true'),
             getData("http://yova.praid.com.ua/api/projects", token, 'work', lang, '', 'true'),
             getData("http://yova.praid.com.ua/api/projects", token, 'soc', lang, '', 'true'),
-            getData("http://yova.praid.com.ua/api/text", token)
+            getData("http://yova.praid.com.ua/api/text", token),
+            getData("http://yova.praid.com.ua/api/seo", token, '', lang, '', 'true')
           ])
           .then(data => {
             dispatch(setFeatured(data[0]))
             dispatch(setAllWorks(data[1]))
             dispatch(setAllSocialities(data[2]))
             dispatch(setAllText(data[3]))
+            dispatch(setSeo(data[4]))
             dispatch(setIsLoaded(true)); 
           })
           .catch(err => console.log(err)); 

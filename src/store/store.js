@@ -13,7 +13,8 @@ const initialState = {
   currentWorkData: false,
   aboutPage: false,
   contactPage: false,
-  allText: []
+  allText: [],
+  seoMeta: [],
 };
 
 export const reducer = (state, action) => {
@@ -73,6 +74,12 @@ export const reducer = (state, action) => {
         ...state,
         contactPage: action.contact
       }
+    case ACTIONS.SET_SEO:
+      return {
+        ...state,
+        seoMeta: action.seo
+      }
+
     default:
       return state;
   }

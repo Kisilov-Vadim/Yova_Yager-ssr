@@ -15,7 +15,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import {getData, getToken} from '../../store/actions';
 
 
-const SocialityPage = ({screenWidth, allSocialities, setAllSocialities, language, allText}) => {
+const SocialityPage = ({screenWidth, allSocialities, setAllSocialities, language, allText, seoMeta}) => {
   const [filter, setFilter] = useState("VIEW ALL")
   const [elementCount, setElementCount] = useState(4)
 
@@ -27,10 +27,10 @@ const SocialityPage = ({screenWidth, allSocialities, setAllSocialities, language
       .then(token =>  {
         Promise.all(
           [
-            getData("http://yova.praid.com.ua/api/projects", token, 'soc', language, '', 'false'),
+            getData("http://yova.praid.com.ua/api/projects", token, 'soc', language, '', 'false')
           ])
         .then(data => {
-          setAllSocialities(data[0]);
+          setAllSocialities(data[0])
         })
         .catch(err => console.log(err));
       })
@@ -66,8 +66,9 @@ const SocialityPage = ({screenWidth, allSocialities, setAllSocialities, language
     return (
       <>
         <MetaTags>
-          <title>Sociality Page</title>
-          <meta name="description" content="In Sociality page you can see some socialities" />
+          <title>{seoMeta.soc_meta_title}</title>
+          <meta name="description" content={seoMeta.soc_meta_description} />
+          <meta property="og:image" content={seoMeta.soc_meta_image} />
         </MetaTags>
         <section className="sociality">
           <div className="wrapper">

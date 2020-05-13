@@ -10,10 +10,10 @@ import {MassonryGallery} from '../../components/MassonryGallery/index';
 import Preloader from '../../components/Preloader/Preloader';
 
 //import Redux actions
-import {getData, getToken} from '../../store/actions';
+import {getData, getToken, setSeo} from '../../store/actions';
 
 
-const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAllSocialities}) => {
+const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAllSocialities, seoMeta}) => {
 
   useEffect(() => {
     setAllWorks(false)
@@ -42,8 +42,9 @@ const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAll
     return (
       <>
         <MetaTags>
-          <title>Yova Yager</title>
-          <meta name="description" content="In main page you can see some cocards with my works" />
+          <title>{seoMeta.meta_title}</title>
+          <meta name="description" content={seoMeta.meta_description} />
+          <meta property="og:image" content={seoMeta.meta_image} />
         </MetaTags>
         <main>
           <Message />

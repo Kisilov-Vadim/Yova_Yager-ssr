@@ -28,8 +28,9 @@ const Contact = ({language, setContactPage, contactPage}) => {
     return (
       <>
         <MetaTags>
-          <title>Contact Page</title>
-          <meta name="description" content="In Contact page you can read some contacts information" />
+          <title>{contactPage.meta_title}</title>
+					<meta name="description" content={contactPage.meta_description} />
+					<meta property="og:image" content={contactPage.meta_image} />
         </MetaTags>
         <section className="contact">
          <div className="wrapper">

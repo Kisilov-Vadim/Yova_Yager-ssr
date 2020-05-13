@@ -5,6 +5,7 @@ import {setAllWorks} from '../../store/actions';
 const mapStateToPros = state => ({
   works: state.works, 
   language: state.language,
+  seoMeta: state.seoMeta
 })
 
 const mapDispatchToProps = {

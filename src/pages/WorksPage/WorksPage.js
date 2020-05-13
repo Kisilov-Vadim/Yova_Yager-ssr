@@ -10,7 +10,7 @@ import Preloader from '../../components/Preloader/Preloader';
 //import Redux actions
 import {getData, getToken} from '../../store/actions';
 
-const WorksPage = ({works, language, setAllWorks}) => {
+const WorksPage = ({works, language, setAllWorks, seoMeta}) => {
   const [filter, setFilter] = useState('VIEW ALL')
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const WorksPage = ({works, language, setAllWorks}) => {
       .then(token =>  {
         Promise.all(
           [
-            getData("http://yova.praid.com.ua/api/projects", token, 'work', language, '', 'false'),
+            getData("http://yova.praid.com.ua/api/projects", token, 'work', language, '', 'false')
           ])
         .then(data => {
           setAllWorks(data[0])
@@ -35,7 +35,6 @@ const WorksPage = ({works, language, setAllWorks}) => {
       <Preloader />
     )
   } else {
-
     let categories = new Set();
     works.forEach(work => categories.add(work.category_name))
 
@@ -55,8 +54,9 @@ const WorksPage = ({works, language, setAllWorks}) => {
     return (
       <>
         <MetaTags>
-          <title>Works Page</title>
-          <meta name="description" content="In Works page you can find all my works" />
+          <title>{seoMeta.work_meta_title}</title>
+          <meta name="description" content={seoMeta.work_meta_description} />
+          <meta property="og:image" content={seoMeta.work_meta_image} />
         </MetaTags>
         <section className="workspage">
           <div className="wrapper">

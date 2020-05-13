@@ -85,8 +85,9 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
     return (
 			<>
 				<MetaTags>
-					<title>{currentWorkData.title}</title>
-					<meta name="description" content={`In Work page you can read some information about ${currentWorkData.title}`} />
+					<title>{currentWorkData.meta_title}</title>
+					<meta name="description" content={currentWorkData.meta_description} />
+					<meta property="og:image" content={currentWorkData.meta_image} />
 				</MetaTags>
 	      <section className="work" itemScope itemType="http://schema.org/CreativeWork" itemProp="isFamilyFriendly">
 	        <div className="wrapper">
