@@ -21,6 +21,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
   }
 
   useEffect(() => {
+    setAboutPage(false)
     getToken('http://yova.praid.com.ua/api/login')
       .then(data => data.data['api_token'])
       .then(token => getData("http://yova.praid.com.ua/api/about", token, '', language, '', '')
