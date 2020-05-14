@@ -16,9 +16,11 @@ const About = ({language, setAboutPage, aboutPage}) => {
   const [openAwards, setOpenAwards] = useState(true);
   const [awardsCardsHeight, setAwardsCardsHeight] = useState(null);
   const [windowWidth, setWindowWidth] = useState(null);
-  if (typeof window === undefined) {
+  
+
+  useEffect(() => {
     setWindowWidth($(window).width());
-  }
+  }, [])
 
   useEffect(() => {
     window.addEventListener('resize', resize);

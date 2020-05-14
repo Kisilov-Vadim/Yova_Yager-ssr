@@ -16,7 +16,12 @@ import Error from '../pages/Error/Error';
 const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) => {
 
   useEffect(() => {
-    getAllData(language)
+    if (window.__INITIAL_STORE__) {
+      console.log(window.__INITIAL_STORE__)
+      delete window.__INITIAL_STORE__
+    } else {
+      getAllData(language)
+    }
   }, [])
 
     if (!isLoaded) {
@@ -32,19 +37,36 @@ const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) 
                 <Route exact={true} path={`/${feature.type}/${feature.alias}`} key={feature.id} component={
                   () => <WorkPage id={feature.id} area={feature.type} />} />
               )}
+              {(featured || []).map(feature =>
+                <Route exact={true} path={`/ua/${feature.type}/${feature.alias}`} key={feature.id} component={
+                  () => <WorkPage id={feature.id} area={feature.type} />} />
+              )}
               {(works || []).map(work =>
                 <Route exact={true} path={`/works/${work.alias}`} key={work.id} component={
+                  () => <WorkPage id={work.id} area={work.type} />} />
+              )}
+              {(works || []).map(work =>
+                <Route exact={true} path={`/ua/works/${work.alias}`} key={work.id} component={
                   () => <WorkPage id={work.id} area={work.type} />} />
               )}
               {(allSocialities || []).map(sociality =>
                 <Route exact={true} path={`/socialities/${sociality.alias}`}  key={sociality.id} component={
                   () => <WorkPage id={sociality.id} area={sociality.type} />} />
               )}
+              {(allSocialities || []).map(sociality =>
+                <Route exact={true} path={`/ua/socialities/${sociality.alias}`}  key={sociality.id} component={
+                  () => <WorkPage id={sociality.id} area={sociality.type} />} />
+              )}
               <Route exact={true} path="/" component={MainPage} />
+              <Route exact={true} path="/ua" component={MainPage} />
               <Route exact={true} path="/works" component={WorksPage} />
+              <Route exact={true} path="/ua/works" component={WorksPage} />
               <Route exact={true} path="/sociality" component={SocialityPage} />
+              <Route exact={true} path="/ua/sociality" component={SocialityPage} />
               <Route exact={true} path="/about" component={About} />
+              <Route exact={true} path="/ua/about" component={About} />
               <Route exact={true} path="/contacts" component={Contact} />
+              <Route exact={true} path="/ua/contacts" component={Contact} />
               <Error />
             </Switch>
               <div className="menu__front"></div>

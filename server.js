@@ -48,7 +48,7 @@ app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' 
 app.use('/admin', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
 
 app.get('/works/:name', (req, res) => {
-  getData(req.params.name)
+  getData('en', req.params.name)
     .then(state => {
       const html = getSSRHtml(req.url, state);
       const meta = metaTagsInstance.renderToString();
@@ -58,7 +58,25 @@ app.get('/works/:name', (req, res) => {
           return res.status(500).send('Some error happend')
         }
         return res.status(200).send(
-          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .then(err => console.error(`Proplem with data fetch from getData /server/server.js, url: /works/:name; error: ${err}`))
+})
+
+app.get('/ua/works/:name', (req, res) => {
+  getData('ua', req.params.name)
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
         )
       })
     })
@@ -66,7 +84,7 @@ app.get('/works/:name', (req, res) => {
 })
 
 app.get('/socialities/:name', (req, res) => {
-  getData(req.params.name)
+  getData('en', req.params.name)
     .then(state => {
       const html = getSSRHtml(req.url, state);
       const meta = metaTagsInstance.renderToString();
@@ -76,29 +94,210 @@ app.get('/socialities/:name', (req, res) => {
           return res.status(500).send('Some error happend')
         }
         return res.status(200).send(
-          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
         )
       })
     })
     .then(err => console.error(`Proplem with data fetch from getData /server/server.js, url: /socialities/:name; error: ${err}`))
 })
 
-app.get('*', (req, res) => {
-  getData()
-  .then(state => {
-    const html = getSSRHtml(req.url, state);
-    const meta = metaTagsInstance.renderToString();
-    fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
-      if(err) {
-        console.log(err)
-        return res.status(500).send('Some error happend')
-      }
-      return res.status(200).send(
-        data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-      )
+app.get('/ua/socialities/:name', (req, res) => {
+  getData('ua', req.params.name)
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
     })
-  })
-  .catch(err => console.log(err))
+    .then(err => console.error(`Proplem with data fetch from getData /server/server.js, url: /socialities/:name; error: ${err}`))
+})
+
+app.get('/', (req, res) => {
+  getData()
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/about', (req, res) => {
+  getData()
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/contacts', (req, res) => {
+  getData()
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/works', (req, res) => {
+  getData()
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/sociality', (req, res) => {
+  getData()
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/ua', (req, res) => {
+  getData('ua')
+    .then(state => {
+      console.log(state)
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/ua/about', (req, res) => {
+  getData('ua')
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/ua/contacts', (req, res) => {
+  getData('ua')
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/ua/works', (req, res) => {
+  getData('ua')
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
+})
+
+app.get('/ua/sociality', (req, res) => {
+  getData('ua')
+    .then(state => {
+      const html = getSSRHtml(req.url, state);
+      const meta = metaTagsInstance.renderToString();
+      fs.readFile(path.resolve('build/index.html'), 'utf-8', (err, data) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('Some error happend')
+        }
+        return res.status(200).send(
+          data.replace('</head>', `${meta}</head>`).replace('<div id="root"></div>', `<div id="root">${html}</div><script>window.__INITIAL_STORE__ = ${JSON.stringify(state)}</script>`)
+        )
+      })
+    })
+    .catch(err => console.log(err))
 })
 
 app.use('/static', express.static(__dirname + '../public_html'))
