@@ -12,15 +12,6 @@ import {getData, getToken} from '../../store/actions';
 
 const Contact = ({language, setContactPage, contactPage}) => {
 
-  useEffect(() => {
-    setContactPage(false)
-    getToken('http://yova.praid.com.ua/api/login')
-      .then(data => data.data['api_token'])
-      .then(token => getData("http://yova.praid.com.ua/api/contact", token, '', language, '', '')
-        .then(data => setContactPage(data))
-      )
-  }, [])
-
   if (!contactPage) {
     return (
       <Preloader />

@@ -12,7 +12,7 @@ const mapStateToPros = state => ({
 })
 
 const mapToDispatch = {
-   getAllData
+   getAllData,
 }
 
 const newApp = connect(

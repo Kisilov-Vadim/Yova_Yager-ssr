@@ -12,7 +12,6 @@ import {WorkPage} from '../pages/WorkPage/index';
 import {Contact} from '../pages/Contact/index';
 import Preloader from '../components/Preloader/Preloader';
 import Error from '../pages/Error/Error';
-import $ from 'jquery';
 
 const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) => {
 
@@ -25,9 +24,6 @@ const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) 
         <Preloader />
       )
     } else {
-      if (typeof window === undefined) {
-        console.log($('#root'))
-      }
       return (
         <>
           <Header />
