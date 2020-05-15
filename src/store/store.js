@@ -2,35 +2,35 @@ import { ACTIONS } from './actions';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const initialState = {
-  screenWidth: 1440,
-  menuShow: false,
-  isLoaded: false,
-  language: 'en',
-  featured: [],
-  works: false,
-  allSocialities: false,
-  currentWorkData: false,
-  aboutPage: false,
-  contactPage: false,
-  allText: [],
-  seoMeta: [],
-};
-
 // const initialState = {
 //   screenWidth: 1440,
 //   menuShow: false,
-//   isLoaded: window.__INITIAL_STORE__.isLoaded || false,
-//   language: window.__INITIAL_STORE__.language || 'en',
-//   featured: window.__INITIAL_STORE__.featured || [],
-//   works: window.__INITIAL_STORE__.works || false,
-//   allSocialities: window.__INITIAL_STORE__.allSocialities || false,
-//   currentWorkData: window.__INITIAL_STORE__.currentWorkData || false,
-//   aboutPage: window.__INITIAL_STORE__.aboutPage || false,
-//   contactPage: window.__INITIAL_STORE__.contactPage || false,
-//   allText: window.__INITIAL_STORE__.allText || [],
-//   seoMeta: window.__INITIAL_STORE__.seoMeta || [],
+//   isLoaded: false,
+//   language: 'en',
+//   featured: [],
+//   works: false,
+//   allSocialities: false,
+//   currentWorkData: false,
+//   aboutPage: false,
+//   contactPage: false,
+//   allText: [],
+//   seoMeta: [],
 // };
+
+const initialState = {
+  screenWidth: 1440,
+  menuShow: false,
+  isLoaded: window.__INITIAL_STORE__.isLoaded || false,
+  language: window.__INITIAL_STORE__.language || 'en',
+  featured: window.__INITIAL_STORE__.featured || [],
+  works: window.__INITIAL_STORE__.works || false,
+  allSocialities: window.__INITIAL_STORE__.allSocialities || false,
+  currentWorkData: window.__INITIAL_STORE__.currentWorkData || false,
+  aboutPage: window.__INITIAL_STORE__.aboutPage || false,
+  contactPage: window.__INITIAL_STORE__.contactPage || false,
+  allText: window.__INITIAL_STORE__.allText || [],
+  seoMeta: window.__INITIAL_STORE__.seoMeta || [],
+};
 
 export const reducer = (state, action) => {
   switch(action.type) {

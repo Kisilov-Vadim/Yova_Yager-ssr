@@ -7,13 +7,9 @@ const mapStateToProps = state => ({
   language: state.language
 })
 
-const mapDispatchToProps = {
-  setContactPage
-}
-
 const newContact = connect(
   mapStateToProps, 
-  mapDispatchToProps
+  null
 )(Contact)
 
 export { newContact as Contact }; 

@@ -6,11 +6,14 @@ import {MetaTags} from 'react-meta-tags';
 import Preloader from '../../components/Preloader/Preloader';
 import {MainWaveAnimatione} from '../../components/MainWaveAnimation/index';
 
-//import Redux actions
-import {getData, getToken} from '../../store/actions';
 
+const Contact = ({language, contactPage}) => {
 
-const Contact = ({language, setContactPage, contactPage}) => {
+  useEffect(() => {
+    if (window.__INITIAL_STORE__) {
+      delete window.__INITIAL_STORE__
+    }
+  }, [])
 
   if (!contactPage) {
     return (
@@ -71,7 +74,7 @@ const Contact = ({language, setContactPage, contactPage}) => {
               </table>
               <div className="qr-code">
                 <span>{language === 'en' ? 'No stumps' : 'Не зволікай'}</span>
-                <img src="img/contact/qr.svg" alt="qr-code" />
+                <img src="/img/contact/qr.svg" alt="qr-code" />
                 <span>{language === 'en' ? 'Just QR us' : 'Просто QR нас'}</span>
               </div>
             </div>

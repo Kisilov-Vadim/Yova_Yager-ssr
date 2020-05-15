@@ -10,7 +10,7 @@
   z-index: 10;
 
   @media screen and (max-width: 560px) {
-    height: calc(100vh - 60px);
+    height: 100vh
   }
 
   &__main {
@@ -18,6 +18,10 @@
     width: 200px;
     height: 90px;
     border: 1px solid #221D00;
+    
+    @media screen and (max-width: 560px) {
+      margin-top: -60px;
+    }
 
     &-left, &-right {
       display: flex;

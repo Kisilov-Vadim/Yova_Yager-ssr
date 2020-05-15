@@ -14,20 +14,24 @@ const WorksPage = ({works, language, setAllWorks, seoMeta}) => {
   const [filter, setFilter] = useState('VIEW ALL')
 
   useEffect(() => {
-    setAllWorks(false)
     language === 'en' ? setFilter('VIEW ALL') : setFilter('ПОКАЗАТИ ВСЕ');
-    getToken('http://yova.praid.com.ua/api/login')
-      .then(data => data.data['api_token'])
-      .then(token =>  {
-        Promise.all(
-          [
-            getData("http://yova.praid.com.ua/api/projects", token, 'work', language, '', 'false')
-          ])
-        .then(data => {
-          setAllWorks(data[0])
+    if (window.__INITIAL_STORE__) {
+      delete window.__INITIAL_STORE__
+    } else {
+      setAllWorks(false)
+      getToken('http://yova.praid.com.ua/api/login')
+        .then(data => data.data['api_token'])
+        .then(token =>  {
+          Promise.all(
+            [
+              getData("http://yova.praid.com.ua/api/projects", token, 'work', language, '', 'false')
+            ])
+          .then(data => {
+            setAllWorks(data[0])
+          })
+          .catch(err => console.log(err));
         })
-        .catch(err => console.log(err));
-      })
+    }
   }, [])
 
   if(!works) {

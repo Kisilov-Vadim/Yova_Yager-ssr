@@ -32,14 +32,18 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
   const [showDetails, setShowDetails] = useState(true);
 
   useEffect(() => {
-    setCurrentWorkData(false)
-    getToken('http://yova.praid.com.ua/api/login')
-      .then(data => data.data['api_token'])
-      .then(token => {
-        getData(`http://yova.praid.com.ua/api/project`, token, '', language, id)
-          .then(data => setCurrentWorkData(data))
-          .catch(err => console.log(err))
-      })
+		if (window.__INITIAL_STORE__) {
+      delete window.__INITIAL_STORE__
+    } else {
+			setCurrentWorkData(false)
+			getToken('http://yova.praid.com.ua/api/login')
+				.then(data => data.data['api_token'])
+				.then(token => {
+					getData(`http://yova.praid.com.ua/api/project`, token, '', language, id)
+						.then(data => setCurrentWorkData(data))
+						.catch(err => console.log(err))
+				})
+		}
   }, [])
 
   useEffect(() => {

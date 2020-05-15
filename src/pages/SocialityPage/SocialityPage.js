@@ -20,20 +20,24 @@ const SocialityPage = ({screenWidth, allSocialities, setAllSocialities, language
   const [elementCount, setElementCount] = useState(4)
 
   useEffect(() => {
-    setAllSocialities(false)
     language === 'en' ? setFilter('VIEW ALL') : setFilter('ПОКАЗАТИ ВСЕ');
-    getToken('http://yova.praid.com.ua/api/login')
-      .then(data => data.data['api_token'])
-      .then(token =>  {
-        Promise.all(
-          [
-            getData("http://yova.praid.com.ua/api/projects", token, 'soc', language, '', 'false')
-          ])
-        .then(data => {
-          setAllSocialities(data[0])
+    if (window.__INITIAL_STORE__) {
+      delete window.__INITIAL_STORE__
+    } else {
+      setAllSocialities(false)
+      getToken('http://yova.praid.com.ua/api/login')
+        .then(data => data.data['api_token'])
+        .then(token =>  {
+          Promise.all(
+            [
+              getData("http://yova.praid.com.ua/api/projects", token, 'soc', language, '', 'false')
+            ])
+          .then(data => {
+            setAllSocialities(data[0])
+          })
+          .catch(err => console.log(err));
         })
-        .catch(err => console.log(err));
-      })
+    }
   }, [])
 
   useEffect(() => {

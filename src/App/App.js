@@ -15,14 +15,13 @@ import Error from '../pages/Error/Error';
 
 const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) => {
 
-  useEffect(() => {
-    if (window.__INITIAL_STORE__) {
-      console.log(window.__INITIAL_STORE__)
-      delete window.__INITIAL_STORE__
-    } else {
-      getAllData(language)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (window.__INITIAL_STORE__) {
+  //     delete window.__INITIAL_STORE__
+  //   } else {
+  //     getAllData(language)
+  //   }
+  // }, [])
 
     if (!isLoaded) {
       return (

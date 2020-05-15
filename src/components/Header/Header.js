@@ -29,34 +29,28 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth}) => {
   }, [])
 
   useEffect(() => {
-    if(typeof window !== undefined) {
-      window.addEventListener('scroll', getScrollPosition)
-      window.addEventListener('resize', resize)
-      window.addEventListener('orientationchange', resize);
+    window.addEventListener('scroll', getScrollPosition)
+    window.addEventListener('resize', resize)
+    window.addEventListener('orientationchange', resize);
 
-      return () => {
-        window.removeEventListener('scroll', getScrollPosition);
-        window.removeEventListener('resize', resize)
-        window.removeEventListener('orientationchange', resize);
-      }
+    return () => {
+      window.removeEventListener('scroll', getScrollPosition);
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('orientationchange', resize);
     }
   })
 
-  if(typeof window === undefined) {
-    if (menuShow) {
-      $('body').css('overflow', 'hidden')
-      $('.menu__front').css('display', 'block')
-    } else {
-      $('body').css('overflow', 'auto')
-      $('.menu__front').css('display', 'none')
-    }
+  if (menuShow) {
+    $('body').css('overflow', 'hidden')
+    $('.menu__front').css('display', 'block')
+  } else {
+    $('body').css('overflow', 'auto')
+    $('.menu__front').css('display', 'none')
   }
 
   const clickOnLink = () => {
-    if (typeof window !== undefined) {
-      setMenuShow(false)
-      window.scrollTo(0,0)
-    }
+    setMenuShow(false)
+    window.scrollTo(0,0)
   }
 
   return (

@@ -19,7 +19,9 @@ const About = ({language, setAboutPage, aboutPage}) => {
   
 
   useEffect(() => {
-    setWindowWidth($(window).width());
+    if (window.__INITIAL_STORE__) {
+      delete window.__INITIAL_STORE__
+    }
   }, [])
 
   useEffect(() => {
@@ -37,7 +39,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
     return () => {
       window.removeEventListener('resize', resize)
     }
-  }, [windowWidth, aboutPage])
+  }, [windowWidth])
 
   const resize = () => {
     setWindowWidth($(window).width())
