@@ -7,7 +7,7 @@ import $ from 'jquery'
 import {SliderMenu} from '../SliderMenu/index';
 import {SelectLanguage} from '../SelectLanguage/index';
 
-const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth}) => {
+const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth, language}) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const getScrollPosition = () => {
@@ -71,10 +71,10 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth}) => {
                 scrollPosition > 0 || screenWidth < 949
                   ?
                     <Switch>
-                      <Route exact={true} path="/">
+                      <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
                         <img className="header__atmosphere-YY" src="/img/header/YY.svg" alt="YY" />
                       </Route>
-                        <Link to='/' exact={true} onClick={clickOnLink} className="header__atmosphere-YY">
+                        <Link to={`/${language === 'ua' ? 'ua' : ''}`} exact={true} onClick={clickOnLink} className="header__atmosphere-YY">
                           <img src="/img/header/YY.svg" alt="YY" style={{cursor: 'pointer'}} />
                         </Link>
                     </Switch>
@@ -90,10 +90,17 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth}) => {
               }
             </div>
               <Switch>
-                <Route exact={true} path="/">
+                <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
                   <span className="header__logo">YOVA YAGER</span>
                 </Route>
-                  <Link to='/' className="header__logo" exact={true} onClick={clickOnLink}>YOVA YAGER</Link>
+                  <Link 
+                    to={`/${language === 'ua' ? 'ua' : ''}`} 
+                    className="header__logo" 
+                    exact={true} 
+                    onClick={clickOnLink}
+                  >
+                    YOVA YAGER
+                  </Link>
               </Switch>
             <div className="header__info">
               {/* <HeaderSearch /> */}

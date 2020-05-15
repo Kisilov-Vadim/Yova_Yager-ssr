@@ -1,7 +1,6 @@
 import React from 'react';
 import App from './App'; 
 import { connect } from 'react-redux';
-import {getAllData} from '../store/actions';
 
 const mapStateToPros = state => ({
   featured: state.featured, 
@@ -11,13 +10,10 @@ const mapStateToPros = state => ({
   language: state.language
 })
 
-const mapToDispatch = {
-   getAllData,
-}
 
 const newApp = connect(
   mapStateToPros, 
-  mapToDispatch
+  null
 )(App)
 
 export { newApp as App };

@@ -1,6 +1,6 @@
 import SelectLanguage from './SelectLanguage';
 import { connect } from 'react-redux';
-import {setIsLoaded, changeLanguage, getAllData } from '../../store/actions';
+import {setIsLoaded, changeLanguage } from '../../store/actions';
 
 const mapStateToPros = state => ({
   language: state.language
@@ -8,7 +8,6 @@ const mapStateToPros = state => ({
 
 const mapToDispatch = {
   changeLanguage,
-  getAllData,
   setIsLoaded
 }
 

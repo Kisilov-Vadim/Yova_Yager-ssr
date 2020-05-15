@@ -108,7 +108,7 @@ const WorksCard = ({
           ? stopAnimate
           : null} itemScope="itemScope" itemType="http://schema.org/Place">
         <img itemProp="image" src={`http://yova.praid.com.ua${image}`} alt={title}/>
-      <Link to={`/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
+        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
           <div data-test="hover-content">
             <span itemProp="name" data-test={`${title}`}>{title}</span>
             <p itemProp="address" data-test={`${location}`}>{location}</p>
@@ -139,7 +139,7 @@ const WorksCard = ({
     return (
       <div className="card" data-test="screenWidth-less-850" itemScope="itemScope" itemType="http://schema.org/Place">
         <img src={`http://yova.praid.com.ua${image}`} alt={title} itemProp="image" />
-      <Link to={`/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
+        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
           <div data-test="hover-content">
             <span itemProp="name" data-test={`${title}`}>{title}</span>
             <p itemProp="address" data-test={`${location}`}>{location}</p>

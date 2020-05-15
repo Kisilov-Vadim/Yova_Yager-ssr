@@ -13,15 +13,8 @@ import {Contact} from '../pages/Contact/index';
 import Preloader from '../components/Preloader/Preloader';
 import Error from '../pages/Error/Error';
 
-const App = ({isLoaded, getAllData, works, allSocialities, language, featured}) => {
+const App = ({isLoaded, works, allSocialities, featured}) => {
 
-  // useEffect(() => {
-  //   if (window.__INITIAL_STORE__) {
-  //     delete window.__INITIAL_STORE__
-  //   } else {
-  //     getAllData(language)
-  //   }
-  // }, [])
 
     if (!isLoaded) {
       return (

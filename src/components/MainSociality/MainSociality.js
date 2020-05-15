@@ -29,7 +29,7 @@ const MainSociality = ({allSocialities, language, allText}) => {
         })}
       </div>
       <LazyLoad unmountIfInvisible={true} offset={200} height={85} >
-        <Link to="/sociality" className="mainSociality__gallery-button" onClick={() => window.scrollTo(0,0)}>
+        <Link to={`/${language === 'ua' ? 'ua/' : ''}sociality`} className="mainSociality__gallery-button" onClick={() => window.scrollTo(0,0)}>
           <ButtonDecorate
             title={allText.button_link_en}
             title_ua={allText.button_link_ua}

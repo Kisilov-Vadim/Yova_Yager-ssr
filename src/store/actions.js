@@ -59,34 +59,3 @@ export const getData = async (url, token, type='', lang, id="", main) => {
   })
   return response.json(); 
 }
-
-export const getAllData = (lang) => {
-
-  return (dispatch) => {
-    getToken('http://yova.praid.com.ua/api/login')
-      .then(data => data.data['api_token'])
-      .then(token =>  {
-        Promise.all(
-          [
-            getData("http://yova.praid.com.ua/api/projects", token, 'feature', lang, '', 'true'),
-            getData("http://yova.praid.com.ua/api/projects", token, 'work', lang, '', 'true'),
-            getData("http://yova.praid.com.ua/api/projects", token, 'soc', lang, '', 'true'),
-            getData("http://yova.praid.com.ua/api/text", token),
-            getData("http://yova.praid.com.ua/api/seo", token, '', lang, '', 'true'),
-            getData("http://yova.praid.com.ua/api/about", token, '', lang, '', ''),
-            getData("http://yova.praid.com.ua/api/contact", token, '', lang, '', '')
-          ])
-          .then(data => {
-            dispatch(setFeatured(data[0]))
-            dispatch(setAllWorks(data[1]))
-            dispatch(setAllSocialities(data[2]))
-            dispatch(setAllText(data[3]))
-            dispatch(setSeo(data[4]))
-            dispatch(setAboutPage(data[5]))
-            dispatch(setContactPage(data[6]))
-            dispatch(setIsLoaded(true)); 
-          })
-          .catch(err => console.log(err)); 
-      })
-  }
-}

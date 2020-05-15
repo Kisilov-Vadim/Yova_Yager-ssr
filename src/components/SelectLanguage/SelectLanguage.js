@@ -1,12 +1,9 @@
 import React from 'react'
 
-export default function SelectLanguage({language, changeLanguage, getAllData, setIsLoaded}) {
+export default function SelectLanguage({language}) {
 
   const handleChangeLanguage = (lang) => {
     if (lang === language) return
-    // setIsLoaded(false)
-    // changeLanguage(lang)
-    // getAllData(lang)
     if(window.location.href.includes('com.ua/ua')) {
       window.location.href = window.location.href.replace('com.ua/ua', 'com.ua')
     } else {
