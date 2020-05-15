@@ -4,9 +4,14 @@ export default function SelectLanguage({language, changeLanguage, getAllData, se
 
   const handleChangeLanguage = (lang) => {
     if (lang === language) return
-    setIsLoaded(false)
-    changeLanguage(lang)
-    getAllData(lang)
+    // setIsLoaded(false)
+    // changeLanguage(lang)
+    // getAllData(lang)
+    if(window.location.href.includes('com.ua/ua')) {
+      window.location.href = window.location.href.replace('com.ua/ua', 'com.ua')
+    } else {
+      window.location.href = window.location.href.replace('com.ua', 'com.ua/ua')
+    }
   }
 
   return (
