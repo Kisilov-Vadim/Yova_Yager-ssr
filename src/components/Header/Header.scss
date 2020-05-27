@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: ProximaRegular;  
+  font-family: GothamPro;  
   src: url('../../fonts/Proxima/ProximaNovaRegular.otf');
 }
 
@@ -16,6 +16,11 @@
 @font-face {
   font-family: GothamPro;
   src: url('../../fonts/GothamPro/GothamPro.woff');
+}
+
+@font-face {
+  font-family: GothamBold;
+  src: url('../../fonts/GothamPro/GothamPro-Bold.ttf');
 }
 
 .header {
@@ -272,11 +277,11 @@
         width: 80px;
         border: none;
         outline: none;
-        font-family: ProximaRegular, sans-serif;
+        font-family: GothamPro, sans-serif;
         font-size: 14px;
 
         &::placeholder {
-          font-family: ProximaRegular, sans-serif;
+          font-family: GothamPro, sans-serif;
           font-size: 14px;
         }
       }

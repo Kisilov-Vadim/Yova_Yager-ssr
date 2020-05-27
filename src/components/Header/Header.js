@@ -66,42 +66,56 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth, language}) 
             ${scrollPosition > 0 ? 'header-scroll' : null}
             `}
           >
-            <div className="header__atmosphere">
-              {
-                scrollPosition > 0 || screenWidth < 949
-                  ?
-                    <Switch>
-                      <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
+            {
+              scrollPosition > 0 || screenWidth < 949
+                ?
+                  <Switch>
+                    <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
+                      <div className="header__atmosphere">
                         <img className="header__atmosphere-YY" src="/img/header/YY.svg" alt="YY" />
-                      </Route>
+                      </div>
+                    </Route>
+                      <div className="header__atmosphere">
                         <Link to={`/${language === 'ua' ? 'ua' : ''}`} exact={true} onClick={clickOnLink} className="header__atmosphere-YY">
                           <img src="/img/header/YY.svg" alt="YY" style={{cursor: 'pointer'}} />
                         </Link>
-                    </Switch>
-                  :
-                    <>
-                      <div className="header__atmosphere-hospitality">
-                        <span>HOSPITALITY</span>
                       </div>
-                      <div className="header__atmosphere-design">
-                        <span>DESIGN</span>
-                      </div>
-                    </>
-              }
-            </div>
-              <Switch>
-                <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
-                  <span className="header__logo">YOVA YAGER</span>
-                </Route>
-                  <Link 
-                    to={`/${language === 'ua' ? 'ua' : ''}`} 
-                    className="header__logo" 
-                    exact={true} 
-                    onClick={clickOnLink}
-                  >
-                    YOVA YAGER
-                  </Link>
-              </Switch>
+                  </Switch>
+                :
+                  <Switch>
+                    <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
+                      <div className="header__atmosphere">
+                        <div className="header__atmosphere-hospitality">
+                          <span>HOSPITALITY</span>
+                        </div>
+                        <div className="header__atmosphere-design">
+                          <span>DESIGN</span>
+                        </div>
+                        </div>
+                    </Route>
+                      <Link to={`/${language === 'ua' ? 'ua' : ''}`} exact={true} onClick={clickOnLink} className="header__atmosphere">
+                        <div className="header__atmosphere-hospitality">
+                          <span>HOSPITALITY</span>
+                        </div>
+                        <div className="header__atmosphere-design">
+                          <span>DESIGN</span>
+                        </div>
+                      </Link>
+                  </Switch>                    
+            }
+            <Switch>
+              <Route exact={true} path={`/${language === 'ua' ? 'ua' : ''}`}>
+                <span className="header__logo">YOVA YAGER</span>
+              </Route>
+              <Link 
+                to={`/${language === 'ua' ? 'ua' : ''}`} 
+                className="header__logo" 
+                exact={true} 
+                onClick={clickOnLink}
+              >
+                YOVA YAGER
+              </Link>
+            </Switch>
             <div className="header__info">
               {/* <HeaderSearch /> */}
               <SelectLanguage />

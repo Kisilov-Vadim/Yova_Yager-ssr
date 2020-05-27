@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import './WorkPage.scss';
 import {useSpring, animated} from 'react-spring';
 import LazyLoad from 'react-lazyload';
 import {MetaTags} from 'react-meta-tags';
+import $ from 'jquery'; 
 
 //import Components
 import {ButtonDecorate} from '../../components/ButtonDecorate/index';
@@ -48,8 +48,10 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 
   useEffect(() => {
     if (!currentWorkData) return
-    setShowDetails(false)
-  }, [currentWorkData])
+		setShowDetails(false)
+		let marginForLeftBlock = $('.work__right-title').innerHeight() + Number($('.work__right-title').css('margin-bottom').replace('px', '')); 
+		$('.work__left').css('margin-top', marginForLeftBlock)
+  }, [currentWorkData, screenWidth])
 
   const showContentAnimation = useSpring({
     height: showDetails ? 'auto' : 0,
@@ -116,10 +118,10 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 	          </div>
 	            <h1 className="work__left-mobtitle" itemProp="name">{currentWorkData.title}</h1>
 							<>
-								<animated.div id="contentShow" className="work__info" style={typeof window === undefined ? window.innerWidth < 799 ? showContentAnimation : null : null}>
+								<animated.div id="contentShow" className="work__info" style={typeof window !== undefined ? window.innerWidth < 799 ? showContentAnimation : null : null}>
 		              <div className="work__left">
 		                <WorkPageTable language={language} content={currentWorkData.common_info} />
-									{ currentWorkData.file.length > 0 && typeof window === undefined &&
+									{ currentWorkData.file.length > 0 && typeof window !== undefined &&
 		                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
 		                    <div className="work__left-button">
 		                      <a href={currentWorkData.file} download={currentWorkData.title}>

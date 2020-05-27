@@ -71,7 +71,9 @@
     justify-content: space-between;
 
     @media screen and (max-width: 799px) {
-      margin: 70px 0 0 0;
+      width: 100%;
+      align-items: center;
+      margin: 0!important; 
     }
 
     &-mobtitle {
@@ -101,7 +103,7 @@
       & > tbody > tr > td:nth-child(odd) {
         display: flex;
         align-items: flex-start;
-        font-family: ProximaBold, sans-serif;
+        font-family: GothamBold, sans-serif;
         font-size: 18px;
         font-weight: 600;
         line-height: 30px;
@@ -110,7 +112,7 @@
       }
 
       & > tbody > tr > td:nth-child(even) {
-        font-family: ProximaRegular, sans-serif;
+        font-family: GothamPro, sans-serif;
         font-size: 18px;
         font-weight: 400;
         line-height: 30px;
@@ -181,9 +183,6 @@
     }
 
     &__left {
-      width: 100%;
-      align-items: center;
-      margin: 0;
 
       &-mobtitle {
         display: block;

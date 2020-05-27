@@ -3,7 +3,7 @@ import './About.scss';
 import LazyLoad from 'react-lazyload';
 import Awards_card from './Awards_card';
 import $ from 'jquery';
-import {getData, getToken} from '../../store/actions';
+import {getData, getToken, setSeo} from '../../store/actions';
 import {MetaTags} from 'react-meta-tags';
 
 //import Components
@@ -22,6 +22,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
     if (window.__INITIAL_STORE__) {
       delete window.__INITIAL_STORE__
     }
+    setWindowWidth($(window).width())
   }, [])
 
   useEffect(() => {
@@ -43,6 +44,20 @@ const About = ({language, setAboutPage, aboutPage}) => {
 
   const resize = () => {
     setWindowWidth($(window).width())
+  }
+
+  const closeAwards = () => {
+    let height = $('.awards__cards-card'); 
+    let allHeight = 0;
+    if (height.length <= 3) {
+      return 'auto'; 
+    } else {
+      for (let i = 0; i < 3; i++) {
+        allHeight += $(height[i]).innerHeight();
+      }
+      allHeight += Number($(height[0]).css('margin-top').replace('px', '')) * 6;  
+    }
+    return `${allHeight}px`;  
   }
 
   if (!aboutPage) {
@@ -152,7 +167,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
               <h1 className="about__title">{language === 'en' ? 'AWARDS' : 'Нагороди'}</h1>
               <div className="awards__cards"
                   style={{
-                    height: `${openAwards === true ? awardsCardsHeight : '680'}px`
+                    height: `${windowWidth < 560 ? openAwards === true ? `${awardsCardsHeight}px` :  `${closeAwards()}` : 'auto'}`  
                   }}
               >
                 {
@@ -165,12 +180,18 @@ const About = ({language, setAboutPage, aboutPage}) => {
                     />)
                 }
               </div>
-              <button
-                className="awards__more"
-                onClick={() => setOpenAwards(!openAwards)}
-              >
-                {language === 'en' ? openAwards ? 'less awards' : 'more awards' : openAwards ? 'менше нагород' : 'більше нагород'} {openAwards === true ? '-' : '+'}
-              </button>
+              {
+                aboutPage[1].length <= 3 
+                  ?
+                    null 
+                  :
+                    <button
+                      className="awards__more"
+                      onClick={() => setOpenAwards(!openAwards)}
+                    >
+                      {language === 'en' ? openAwards ? 'less awards' : 'more awards' : openAwards ? 'менше нагород' : 'більше нагород'} {openAwards === true ? '-' : '+'}
+                    </button>                       
+              }
             </div>
           </div>
         </section>

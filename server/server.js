@@ -16,7 +16,6 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 //React Components
 import {App} from '../src/App/index';
-import Error from '../src/pages/Error/Error';
 
 //React store and actions
 import {reducer} from '../src/store/store';
@@ -44,6 +43,9 @@ const getSSRHtml = (url, state) => {
     </StaticRouter>
   )
 }
+
+app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
+app.use('/admin', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
 
 app.get('/works/:name', (req, res) => {
   getData('en', req.params.name)
