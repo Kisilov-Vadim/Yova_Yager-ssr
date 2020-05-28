@@ -1,6 +1,13 @@
 .main {
 
   &__work {
+
+    .massonry__title {
+
+      @media screen and (max-width: 560px) {
+        font-size: 16px;
+      }
+    }
     
     .decorateButton {
       margin-bottom: 100px;

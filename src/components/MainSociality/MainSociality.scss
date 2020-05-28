@@ -12,7 +12,11 @@
     font-family: Formular;
     font-size: 24px;
     letter-spacing: 5px;
-    text-transform: uppercase;
+    text-transform: uppercase; 
+
+    @media screen and (max-width: 560px) {
+      font-size: 16px;
+    }
   }
 
   &__gallery { 
@@ -68,6 +72,10 @@
     &__gallery {
       grid-template-columns: 1fr;
       grid-gap: 50px; 
+    }
+
+    .mainSociality__gallery-button {
+      margin: 0 auto;
     }
   }
 }

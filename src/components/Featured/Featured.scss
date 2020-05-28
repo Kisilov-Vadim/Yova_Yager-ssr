@@ -2,6 +2,13 @@
   height: max-content;
   margin-bottom: 100px;
 
+  h3 {
+    @media screen and (max-width: 560px) {
+      line-height: 29px;
+      font-size: 16px;
+    }
+  }
+
   &__projects {
     position: relative;
     justify-self: center;
@@ -35,22 +42,15 @@
 
 @media screen and (max-width: 699px) {
   .featured {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 
     &__projects {
-      display: flex;
-      flex-direction: column;
-
-      & > div {
-        margin-bottom: 50px;
-      }
+      grid-template-columns: 1fr;  
+      grid-gap: 53px; 
+      padding-top: 16px;
 
       & > div:nth-child(even) {
         top: 0;
-      }
-
-      & > div > img {
-        object-fit: contain;
       }
     }
   }

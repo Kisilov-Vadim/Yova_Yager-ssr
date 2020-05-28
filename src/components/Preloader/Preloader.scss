@@ -21,6 +21,8 @@
     
     @media screen and (max-width: 560px) {
       margin-top: -60px;
+      width: 140px;
+      height: 63px;
     }
 
     &-left, &-right {
@@ -34,6 +36,10 @@
         width: 40px!important;
         display: flex;
         justify-content: center;
+
+        @media screen and (max-width: 560px) {
+          width: 28px!important;
+        }
       }
 
       span {
@@ -42,6 +48,10 @@
         font-family: GothamPro, sans-serif;
         font-size: 48px;
         text-align: center;
+
+        @media screen and (max-width: 560px) {
+            font-size: 33px;
+        }
       }
     }
 
