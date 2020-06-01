@@ -4,8 +4,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
     margin: 0 0 62px;
+
+    @media screen and (max-width: 560px) {
+      margin: 0 0 21px;
+    }
 
     &-title {
       font-family: Formular, sans-serif;
@@ -18,6 +21,11 @@
       color: #000000;
       text-transform: uppercase;
       margin: 0 50px 0 0;
+
+      @media screen and (max-width: 560px) {
+        font-size: 21px;
+        letter-spacing: 7.5px;
+      }
     }
 
     &-sort {
@@ -51,11 +59,7 @@
   .workspage {
 
     &__nav {
-      
-      &-title {
-        font-size: 36px;
-        
-      }
+
 
       &-sort {
         display: none;

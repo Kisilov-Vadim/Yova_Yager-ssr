@@ -47,7 +47,7 @@ const Contact = ({language, contactPage}) => {
                   </th>
                   <td>
                     {
-                      contactPage.phone.split('\n').map(tel => <a href={`tel: ${tel.split(': ')[1]}`}>{tel}</a>)
+                      contactPage.phone.split('\n').map(tel => <a href={`tel: ${tel}`}>{tel}</a>)
                     }
                   </td>
                 </tr>

@@ -104,7 +104,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 	                    data-test="main_video"
 	                    className="work__mainVideo"
 	                    width="100%"
-	                    height="100%"
+	                    height="50vw"
 	                    src={currentWorkData.video}>
 	                  </iframe>
 	                : <LazyPhotoLoad
@@ -118,10 +118,10 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 	          </div>
 	            <h1 className="work__left-mobtitle" itemProp="name">{currentWorkData.title}</h1>
 							<>
-								<animated.div id="contentShow" className="work__info" style={typeof window !== undefined ? window.innerWidth < 799 ? showContentAnimation : null : null}>
+								<animated.div id="contentShow" className="work__info" style={window.innerWidth < 799 ? showContentAnimation : null}>
 		              <div className="work__left">
 		                <WorkPageTable language={language} content={currentWorkData.common_info} />
-									{ currentWorkData.file.length > 0 && typeof window !== undefined &&
+									{ currentWorkData.file.length > 0 &&
 		                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
 		                    <div className="work__left-button">
 		                      <a href={currentWorkData.file} download={currentWorkData.title}>
@@ -137,20 +137,32 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 		                }
 		              </div>
 		              <div className="work__right">
-		              <h1
-		                data-test={`main_title-${language}`}
-		                itemProp="name" className="work__right-title"
-		              >
-		                {currentWorkData.title}
-		              </h1>
-		              <p
-										data-test={`main_description-${language}`}
-										className="work__right-text"
-										itemptop='description'
-									>
-									{currentWorkData.description}
-									</p>
+										<h1
+											data-test={`main_title-${language}`}
+											itemProp="name" className="work__right-title"
+										>
+											{currentWorkData.title}
+										</h1>
+										<p
+											data-test={`main_description-${language}`}
+											className="work__right-text"
+											itemptop='description'
+										>
+										{currentWorkData.description}
+										</p>
 		              </div>
+									{ currentWorkData.file.length > 0 &&
+										<div className="work__left-button-mob">
+											<a href={currentWorkData.file} download={currentWorkData.title}>
+												<ButtonDecorate
+													title="media kit"
+													title_ua="Медіа комплект"
+													id={'buttonMedia'}
+													autoStart={false}
+												/>
+											</a>
+										</div>
+									}
 		            </animated.div>
 							</>
 	            <button className="work__details" onClick={() => setShowDetails(!showDetails)}>
