@@ -34,8 +34,8 @@ const About = ({language, setAboutPage, aboutPage}) => {
     };
 
     if (!$('.awards__cards').innerHeight() || awardsCardsHeight) return
-    setAwardsCardsHeight($('.awards__cards').innerHeight())
-    setOpenAwards(false)
+    setAwardsCardsHeight($('.awards__cards').innerHeight());
+    setOpenAwards(false);
 
     return () => {
       window.removeEventListener('resize', resize)

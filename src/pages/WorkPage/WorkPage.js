@@ -104,7 +104,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 	                    data-test="main_video"
 	                    className="work__mainVideo"
 	                    width="100%"
-	                    height="50vw"
+	                    height="100%"
 	                    src={currentWorkData.video}>
 	                  </iframe>
 	                : <LazyPhotoLoad
