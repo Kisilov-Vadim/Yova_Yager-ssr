@@ -35,8 +35,8 @@ export const getToken = async (url) => {
       "Accept": "application/json"
     }, 
     body: JSON.stringify({
-      email: "admin@admin.com", 
-      password: "admin"
+      email: "tetra_info_com@gmail.com", 
+      password: "01234789"
     })
   })
   return response.json(); 
