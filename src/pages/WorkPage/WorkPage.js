@@ -80,14 +80,13 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
       })
     }
     return shuffle(returnArr)
-  }
+	}
 
   if (!currentWorkData) {
     return (
       <Preloader />
     )
   } else {
-
     return (
 			<>
 				<MetaTags>
@@ -121,7 +120,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 								<animated.div id="contentShow" className="work__info" style={window.innerWidth < 799 ? showContentAnimation : null}>
 		              <div className="work__left">
 		                <WorkPageTable language={language} content={currentWorkData.common_info} />
-									{ currentWorkData.file.length > 0 &&
+									{ currentWorkData.file &&
 		                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
 		                    <div className="work__left-button">
 		                      <a href={currentWorkData.file} download={currentWorkData.title}>
@@ -151,7 +150,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 										{currentWorkData.description}
 										</p>
 		              </div>
-									{ currentWorkData.file.length > 0 &&
+									{ currentWorkData.file &&
 										<div className="work__left-button-mob">
 											<a href={currentWorkData.file} download={currentWorkData.title}>
 												<ButtonDecorate
