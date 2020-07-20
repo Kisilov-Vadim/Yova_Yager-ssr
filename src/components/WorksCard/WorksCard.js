@@ -13,7 +13,8 @@ const WorksCard = ({
   link,
   location,
   area,
-  language
+  language,
+  key
 }) => {
 
   let animIdPici,
@@ -99,24 +100,26 @@ const WorksCard = ({
   }
 
   if (screenWidth > 850 && typeof window !== undefined) {
-
+    
     return (
-      <Fade bottom="bottom" duration={1700} delay={100} data-test="screenWidth-more-850">
-      <div data-test="withBackgroundPici" className="card" onMouseOver={backgroundPici
-          ? startAnimate
-          : null} onMouseLeave={backgroundPici
+      <Fade bottom="bottom" duration={1700} delay={100}>
+      <div className="card" 
+          onMouseOver={backgroundPici
+            ? startAnimate
+            : null} 
+          onMouseLeave={backgroundPici
           ? stopAnimate
-          : null} itemScope="itemScope" itemType="http://schema.org/Place">
-        <img itemProp="image" src={`http://yova.praid.com.ua${image}`} alt={title}/>
-        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
-          <div data-test="hover-content">
-            <span itemProp="name" data-test={`${title}`}>{title}</span>
-            <p itemProp="address" data-test={`${location}`}>{location}</p>
+          : null} itemScope="itemScope" itemType="http://schema.org/Place" key={key}>
+        <img itemProp="image" src={image} alt={title} />
+        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} itemProp="url">
+          <div>
+            <span itemProp="name">{title}</span>
+            <p itemProp="address">{location}</p>
           </div>
         </Link>
         {
           backgroundPici === true
-            ? <div className="card__pici" data-test="background-pici">
+            ? <div className="card__pici">
                 <svg xmlns="http://www.w3.org/2000/svg" id="backgroundPici" width="655px" height="666px" viewBox="30 0 600 620">
                   <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.483212426">
                     <g>
@@ -137,12 +140,12 @@ const WorksCard = ({
   } else {
 
     return (
-      <div className="card" data-test="screenWidth-less-850" itemScope="itemScope" itemType="http://schema.org/Place">
-        <img src={`http://yova.praid.com.ua${image}`} alt={title} itemProp="image" />
-        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} data-test={`/${area}/${link}`} itemProp="url">
-          <div data-test="hover-content">
-            <span itemProp="name" data-test={`${title}`}>{title}</span>
-            <p itemProp="address" data-test={`${location}`}>{location}</p>
+      <div className="card" itemScope="itemScope" itemType="http://schema.org/Place">
+        <img src={`${image}`} alt={title} itemProp="image" />
+        <Link to={`${language === 'ua' ? '/ua' : ''}/${area}/${link}`} exact={true} className="card__info" onClick={() => window.scrollTo(0, 0)} itemProp="url">
+          <div>
+            <span itemProp="name" >{title}</span>
+            <p itemProp="address" >{location}</p>
           </div>
         </Link>
       </div>

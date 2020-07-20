@@ -29,13 +29,13 @@ const shuffle = (arr) => {
 }
 
 const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialities, currentWorkData, setCurrentWorkData}) => {
-  const [showDetails, setShowDetails] = useState(true);
+  const [showDetails, setShowDetails] = useState(true); 
 
   useEffect(() => {
 		if (window.__INITIAL_STORE__) {
-      delete window.__INITIAL_STORE__
-    } else {
-			setCurrentWorkData(false)
+      delete window.__INITIAL_STORE__;
+    } 
+    setCurrentWorkData(false)
 			getToken('http://yova.praid.com.ua/api/login')
 				.then(data => data.data['api_token'])
 				.then(token => {
@@ -43,7 +43,6 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 						.then(data => setCurrentWorkData(data))
 						.catch(err => console.log(err))
 				})
-		}
   }, [])
 
   useEffect(() => {
@@ -80,13 +79,16 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
       })
     }
     return shuffle(returnArr)
-	}
-
+  }
+  
+  console.log(true)
+  
   if (!currentWorkData) {
     return (
       <Preloader />
     )
   } else {
+    
     return (
 			<>
 				<MetaTags>
@@ -123,7 +125,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 									{ currentWorkData.file &&
 		                  <LazyLoad height={screenWidth > 799 ? 85 : 0} unmountIfInvisible={true}>
 		                    <div className="work__left-button">
-		                      <a href={currentWorkData.file} download={currentWorkData.title}>
+		                      <a href={currentWorkData.file} target="_blank">
 		                        <ButtonDecorate
 		                          title="media kit"
 		                          title_ua="Медіа комплект"
@@ -152,7 +154,7 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 		              </div>
 									{ currentWorkData.file &&
 										<div className="work__left-button-mob">
-											<a href={currentWorkData.file} download={currentWorkData.title}>
+											<a href={currentWorkData.file} target="_blank">
 												<ButtonDecorate
 													title="media kit"
 													title_ua="Медіа комплект"

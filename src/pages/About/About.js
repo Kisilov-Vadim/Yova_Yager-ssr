@@ -65,7 +65,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
       <Preloader />
     )
   } else {
-
+    
     return (
       <>
         <MetaTags>
@@ -153,7 +153,7 @@ const About = ({language, setAboutPage, aboutPage}) => {
               offset={100}
             >
               <div className="about__press-button">
-                <a href="#" >
+                <a href="#" target="_blank">
                   <ButtonDecorate
                     title="MEDIA KIT"
                     title_ua="Медіа комплект"
