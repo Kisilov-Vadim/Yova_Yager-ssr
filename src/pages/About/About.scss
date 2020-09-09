@@ -260,11 +260,9 @@
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 45px 100px 60px;
+    justify-content: center;
+    padding: 45px 50px 60px;
     height: max-content;
-    max-width: 1000px;
-    align-self: center;
 
     @media screen and (max-width: 799px) {
       padding: 45px 4% 60px
@@ -284,9 +282,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      // min-height: 120px;
       width: 205px;
-      margin: 30px 0;
+      margin: 30px 25px;
 
       @media screen and (max-width: 560px) {
         margin: 20px 0;

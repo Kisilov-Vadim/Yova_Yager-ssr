@@ -14,8 +14,7 @@ import Preloader from '../components/Preloader/Preloader';
 import Error from '../pages/Error/Error';
 
 const App = ({isLoaded, works, allSocialities, featured}) => {
-
-
+  
     if (!isLoaded) {
       return (
         <Preloader />

@@ -110,6 +110,10 @@
         line-height: 30px;
         min-width: 140px;
         margin-right: 10px;
+
+        @media screen and (max-width: 799px) {
+          font-size: 14px;
+        }
       }
 
       & > tbody > tr > td:nth-child(even) {
@@ -117,6 +121,10 @@
         font-size: 18px;
         font-weight: 400;
         line-height: 30px;
+
+        @media screen and (max-width: 799px) {
+          font-size: 14px;
+        }
       }
     }
     
@@ -233,7 +241,7 @@
       
       &-text {
         margin: 0 auto;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.5;
       }
 

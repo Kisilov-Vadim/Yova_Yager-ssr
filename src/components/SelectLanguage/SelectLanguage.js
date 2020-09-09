@@ -4,6 +4,7 @@ export default function SelectLanguage({language}) {
 
   const handleChangeLanguage = (lang) => {
     if (lang === language) return
+    
     if(window.location.href.includes('com.ua/ua')) {
       window.location.href = window.location.href.replace('com.ua/ua', 'com.ua')
     } else {

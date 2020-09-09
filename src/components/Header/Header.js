@@ -33,20 +33,20 @@ const Header = ({menuShow, setMenuShow, setScreenWidth, screenWidth, language}) 
     window.addEventListener('resize', resize)
     window.addEventListener('orientationchange', resize);
 
+    if (menuShow) {
+      $('body').css('overflow', 'hidden')
+      $('.menu__front').css('display', 'block')
+    } else {
+      $('body').css('overflow', 'auto')
+      $('.menu__front').css('display', 'none')
+    }
+
     return () => {
       window.removeEventListener('scroll', getScrollPosition);
       window.removeEventListener('resize', resize)
       window.removeEventListener('orientationchange', resize);
     }
   })
-
-  if (menuShow) {
-    $('body').css('overflow', 'hidden')
-    $('.menu__front').css('display', 'block')
-  } else {
-    $('body').css('overflow', 'auto')
-    $('.menu__front').css('display', 'none')
-  }
 
   const clickOnLink = () => {
     setMenuShow(false)

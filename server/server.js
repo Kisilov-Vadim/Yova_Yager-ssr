@@ -22,7 +22,7 @@ import {reducer} from '../src/store/store';
 import getData from './dataUtilits';
 
 //Create server
-const PORT = 8000;
+const PORT = 8001;
 
 const app = express()
 

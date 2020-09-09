@@ -66,7 +66,9 @@ const MainPage = ({works, allSocialities, allText, language, setAllWorks, setAll
                 buttonAutoStart={true}
               />
             </div>
-            <MainSociality />
+            {
+              allSocialities.length > 0 ? <MainSociality /> : null
+            }
           </div>
         </main>
       </>

@@ -3,6 +3,7 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import "isomorphic-fetch";
+import basicAuth from 'basic-auth-connect';
 
 //React modules
 import { createStore } from 'redux';
@@ -44,8 +45,10 @@ const getSSRHtml = (url, state) => {
   )
 }
 
+
 app.use('/api', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
 app.use('/admin', createProxyMiddleware({ target: 'http://yova.praid.com.ua:8000' }));
+app.use(basicAuth('yova_developer', 'QwErTyYovaDev'));
 
 app.get('/works/:name', (req, res) => {
   getData('en', req.params.name)

@@ -81,8 +81,6 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
     return shuffle(returnArr)
   }
   
-  console.log(true)
-  
   if (!currentWorkData) {
     return (
       <Preloader />

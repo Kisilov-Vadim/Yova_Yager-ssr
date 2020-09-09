@@ -18,7 +18,7 @@
     grid-auto-rows: 525px;
     justify-items: stretch;
     justify-content: center;
-    padding-top: 53px;
+    padding-top: 50px;
     margin: 0 auto; 
 
     & > div {
@@ -47,7 +47,7 @@
     &__projects {
       grid-template-columns: 1fr;  
       grid-gap: 53px; 
-      padding-top: 16px;
+      padding-top: 50px;
 
       & > div:nth-child(even) {
         top: 0;

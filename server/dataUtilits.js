@@ -2,6 +2,7 @@ import {getToken, getData} from '../src/store/actions';
 
 export default async (lang = 'en', alias = false) => {
   let token = await getToken('http://yova.praid.com.ua/api/login');
+  
   let state = await Promise.all([
     getData("http://yova.praid.com.ua/api/projects", token.data.api_token, 'feature', lang, '', 'true'),
     getData("http://yova.praid.com.ua/api/projects", token.data.api_token, 'work', lang, '', 'false'),
