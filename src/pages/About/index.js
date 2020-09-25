@@ -4,7 +4,8 @@ import {setAboutPage} from '../../store/actions';
 
 const mapStateToPros = state => ({
   language: state.language,
-  aboutPage: state.aboutPage
+  aboutPage: state.aboutPage, 
+  allText: state.allText
 })
 
 const mapDispatchToProps = {

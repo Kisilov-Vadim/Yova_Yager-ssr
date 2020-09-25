@@ -15,6 +15,7 @@
       margin: 26px 0 110px 0;
       width: calc((100% - 110px) / 2);
       box-sizing: border-box;
+      white-space: pre-line;
 
       @media screen and (max-width: 699px) {
         margin: 21px 0;

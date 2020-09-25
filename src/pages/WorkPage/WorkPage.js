@@ -28,7 +28,7 @@ const shuffle = (arr) => {
 	return arr;
 }
 
-const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialities, currentWorkData, setCurrentWorkData}) => {
+const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialities, currentWorkData, setCurrentWorkData, allText}) => {
   const [showDetails, setShowDetails] = useState(true); 
 
   useEffect(() => {
@@ -125,8 +125,8 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 		                    <div className="work__left-button">
 		                      <a href={currentWorkData.file} target="_blank">
 		                        <ButtonDecorate
-		                          title="media kit"
-		                          title_ua="Медіа комплект"
+		                          title={allText.button_media_en}
+															title_ua={allText.button_media_ua}
 		                          id={'buttonMedia'}
 		                          autoStart={true}
 		                        />
@@ -154,8 +154,8 @@ const WorkPage = ({screenWidth, id, language, area, works, featured, allSocialit
 										<div className="work__left-button-mob">
 											<a href={currentWorkData.file} target="_blank">
 												<ButtonDecorate
-													title="media kit"
-													title_ua="Медіа комплект"
+													title={allText.button_media_en}
+													title_ua={allText.button_media_ua}
 													id={'buttonMedia'}
 													autoStart={false}
 												/>

@@ -8,7 +8,8 @@ const mapStateToPros = state => ({
   featured: state.featured,
   allSocialities: state.allSocialities,
   currentWorkData: state.currentWorkData, 
-  language: state.language
+  language: state.language, 
+  allText: state.allText
 })
 
 const mapDispatchToProps = {

@@ -12,7 +12,7 @@ import LazyPhotoLoad from '../../components/LazyPhotoLoad/LazyPhotoLoad';
 import Preloader from '../../components/Preloader/Preloader';
 
 
-const About = ({language, setAboutPage, aboutPage}) => {
+const About = ({language, setAboutPage, aboutPage, allText}) => {
   const [openAwards, setOpenAwards] = useState(true);
   const [awardsCardsHeight, setAwardsCardsHeight] = useState(null);
   const [windowWidth, setWindowWidth] = useState(null);
@@ -155,8 +155,8 @@ const About = ({language, setAboutPage, aboutPage}) => {
               <div className="about__press-button">
                 <a href="#" target="_blank">
                   <ButtonDecorate
-                    title="MEDIA KIT"
-                    title_ua="Медіа комплект"
+                    title={allText.button_link_en}
+                    title_ua={allText.button_link_ua}
                     id="aboutPressKitButton"
                     autoStart={true}
                   />
